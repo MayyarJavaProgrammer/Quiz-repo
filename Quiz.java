@@ -18,7 +18,9 @@ public class Quiz {
     static Scanner reader = new Scanner(System.in);
 
     public static void main(String[] args) {
-        int numberOfQuestion = showNumberQuestionMessage();
+        int numberOfQuestions = showNumberQuestionMessage();
+        showMargins();
+        getNumberOfCharacters();
     }
 
     public static int showNumberQuestionMessage() {
@@ -30,5 +32,15 @@ public class Quiz {
     public static void showMargins() {
         System.out.println("==================================");
     }
+    
+    public static int getNumberOfCharacters() {
+            System.out.println("Please enter an integer value between 3 and 100 (the number of characters from which to enumerate certain (Odd/Even?Primary) numbers -- Degree of difficulty)");
+            int numberOfCharacters = reader.nextInt();
+            if(numberOfCharacters >= 3 || numberOfCharacters <= 100) {
+                return numberOfCharacters;
+            } else {
+                return getNumberOfCharacters();
+            }          
+    } 
 
 }
