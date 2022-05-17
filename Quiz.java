@@ -18,13 +18,17 @@ public class Quiz {
     static Scanner reader = new Scanner(System.in);
 
     public static void main(String[] args) {
-
+        int numberOfQuestion;
     }
 
     public static int showQuestionMessage() {
         System.out.println("Please enter the maximum number of questions");
         return reader.nextInt();
 
+    }
+
+    public static void showMargins() {
+        System.out.println("==================================");
     }
 
 }
