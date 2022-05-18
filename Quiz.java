@@ -81,6 +81,17 @@ public class Quiz {
     }
 
     public static void showQuestionMessage() {
-        System.out.println("How many times " + get +numbers appear in the following characters:");
+        System.out.println("How many times "+getTypeNumbers() + "numbers appear in the following characters:");
     }
+
+    public static String getTypeNumbers() {
+        Random r = new Random();
+        //get all types of numbers
+        String[] typeNumbers = {"Odd", "Even", "Primary"};
+        //get index between 0 and 2
+        int index = r.nextInt(3);
+        //return type of number 
+        return typeNumbers[index];
+    }
+
 }
