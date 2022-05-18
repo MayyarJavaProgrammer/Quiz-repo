@@ -4,6 +4,7 @@
  */
 package quiz;
 
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -21,13 +22,25 @@ public class Quiz {
     public static void main(String[] args) {
         int numberOfQuestions = showNumberQuestionMessage();
         showMargins();
-        char randomString[];
-        randomString = generateRandomString(getNumberOfCharacters());
+        char[] randomString = generateRandomString(getNumberOfCharacters());
     }
 
     public static int showNumberQuestionMessage() {
         System.out.println("Please enter the maximum number of questions");
+        try {
             int number = reader.nextInt();
+            if (number < 1) {
+                throw new Exception();
+            } else {
+                return number;
+            }
+        } catch(InputMismatchException ex ) {
+            reader = new Scanner(System.in);
+            return showNumberQuestionMessage();
+        } 
+        catch (Exception ex) {
+            return showNumberQuestionMessage();
+        }
     }
 
     public static void showMargins() {
