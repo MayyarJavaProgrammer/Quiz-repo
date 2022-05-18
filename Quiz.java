@@ -34,11 +34,10 @@ public class Quiz {
             } else {
                 return number;
             }
-        } catch(InputMismatchException ex ) {
+        } catch (InputMismatchException ex) {
             reader = new Scanner(System.in);
             return showNumberQuestionMessage();
-        } 
-        catch (Exception ex) {
+        } catch (Exception ex) {
             return showNumberQuestionMessage();
         }
     }
@@ -49,10 +48,17 @@ public class Quiz {
 
     public static int getNumberOfCharacters() {
         System.out.println("Please enter an integer value between 3 and 100 (the number of characters from which to enumerate certain (Odd/Even?Primary) numbers -- Degree of difficulty)");
-        int numberOfCharacters = reader.nextInt();
-        if (numberOfCharacters >= 3 && numberOfCharacters <= 100) {
-            return numberOfCharacters;
-        } else {
+        try {
+            int numberOfCharacters = reader.nextInt();
+            if (numberOfCharacters >= 3 && numberOfCharacters <= 100) {
+                return numberOfCharacters;
+            } else {
+                throw new Exception();
+            }
+        } catch (InputMismatchException ex) {
+            reader = new Scanner(System.in);
+            return getNumberOfCharacters();
+        } catch (Exception ex) {
             return getNumberOfCharacters();
         }
     }
