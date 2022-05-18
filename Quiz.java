@@ -23,6 +23,7 @@ public class Quiz {
         int numberOfQuestions = showNumberQuestionMessage();
         showMargins();
         char[] randomString = generateRandomString(getNumberOfCharacters());
+
     }
 
     public static int showNumberQuestionMessage() {
@@ -77,5 +78,9 @@ public class Quiz {
         }
         //convert RandomString to char array and return it
         return RandomString.toCharArray();
+    }
+
+    public static void showQuestionMessage() {
+        System.out.println("How many times " + get +numbers appear in the following characters:");
     }
 }
