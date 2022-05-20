@@ -18,12 +18,13 @@ public class Quiz {
      * @param args the command line arguments
      */
     static Scanner reader = new Scanner(System.in);
-
+    static int numberOfQuestions;
+    static char[] randomString;
     public static void main(String[] args) {
-        int numberOfQuestions = showNumberQuestionMessage();
+        numberOfQuestions = showNumberQuestionMessage();
         showMargins();
-        char[] randomString = generateRandomString(getNumberOfCharacters());
-
+        randomString = generateRandomString(getNumberOfCharacters());
+        showQuestionMessage(randomString);
     }
 
     public static int showNumberQuestionMessage() {
@@ -80,8 +81,18 @@ public class Quiz {
         return RandomString.toCharArray();
     }
 
-    public static void showQuestionMessage() {
-        System.out.println("How many times "+getTypeNumbers() + "numbers appear in the following characters:");
+    public static void showQuestionMessage(char[] randomString) {
+        System.out.printf("How many times %s numbers appear in the following characters:%n",
+                getTypeNumbers());
+        System.out.println(randomString);
+        try {
+            reader.nextInt();
+        } catch (InputMismatchException ex) {
+            reader = new Scanner(System.in);
+            showQuestionMessage(randomString);
+        } catch (Exception ex) {
+            showQuestionMessage(randomString);
+        }
     }
 
     public static String getTypeNumbers() {
