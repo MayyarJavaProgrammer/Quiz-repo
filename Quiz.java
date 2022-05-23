@@ -73,7 +73,7 @@ public class Quiz {
     }
 
     public static int getNumberOfCharacters() {
-        System.out.println("Please enter an integer value between 3 and 100 (the number of characters from which to enumerate certain (Odd/Even?Primary) numbers -- Degree of difficulty)");
+        System.out.println("Please enter an integer value between 3 and 100 (the number of characters from which to enumerate certain (Odd/Even/Primary) numbers -- Degree of difficulty)");
         try {
             int numberOfCharacters = reader.nextInt();
             if (numberOfCharacters >= 3 && numberOfCharacters <= 100) {
