@@ -28,7 +28,9 @@ public class Quiz {
     static int[] correctِِِِِِِAnswers;
     static int numberOfCharacters;
     static int counterNumber = 0;
-    
+    static byte counterCorrectِِِِِِِAnswers = 0;
+    static byte counterWrongAnswers = 0;
+
     public static void main(String[] args) {
         numberOfQuestions = showNumberQuestionMessage();
 
@@ -40,6 +42,7 @@ public class Quiz {
         showMargins();
         numberOfCharacters = getNumberOfCharacters();
         showQuestionMessage();
+        getrasult();
     }
 
     public static int showNumberQuestionMessage() {
@@ -179,9 +182,68 @@ public class Quiz {
     public static void checkAnswers(int numberOfCurrentQuestion) {
         if (userAnswers[numberOfCurrentQuestion] == correctِِِِِِِAnswers[numberOfCurrentQuestion]) {
             checkUserAnswers[numberOfCurrentQuestion] = 1;
+            counterCorrectِِِِِِِAnswers++;
         } else {
             checkUserAnswers[numberOfCurrentQuestion] = 0;
+            counterWrongAnswers++;
         }
+    }
+
+    public static void getrasult() {
+        String input = null;
+        boolean flag = true;
+        while (flag) {
+            try {
+                System.out.println("""
+                            To get the number of wrong answers, type 1
+                            To get the number of right answers, type 2
+                            To view all the questions with correct and answered responses, type 3
+                            To exit, type exit""");
+                input = reader.next();
+                if (input.equalsIgnoreCase("exit")) {
+                    flag = false;
+                    break;
+                } else {
+                    getAnswers(Integer.parseInt(input));
+                }
+            } catch (Exception ex) {
+                getrasult();
+            }
+        }
+    }
+
+    public static byte getWrongAnswers() {
+        return counterWrongAnswers;
 
     }
+
+    public static byte getCorrectِِِِِِِAnswers() {
+        return counterCorrectِِِِِِِAnswers;
+    }
+
+    public static void getAnswers(int choice) {
+        switch (choice) {
+            case 1 -> {
+                System.out.println("The number of the wrong answers is : " + getWrongAnswers());
+            }
+            case 2 -> {
+                System.out.println("The number of the right answers is : " + getCorrectِِِِِِِAnswers());
+            }
+            case 3 -> {
+                getAllAnswers();
+            }
+        }
+    }
+
+    public static void getAllAnswers() {
+        System.out.println("""
+                           Question     Type     User Answer     Correct Answer
+                           =========================================================
+                           """);
+
+        for (int i = 0; i < numberOfQuestions; i++) {
+            System.out.println(randomStrings[i] + "\t" + typeOfNumberQuestion[i] + "\t\t" + userAnswers[i] + "\t\t" + correctِِِِِِِAnswers[i]);
+        }
+    }
+
 }
