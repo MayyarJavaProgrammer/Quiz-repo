@@ -22,11 +22,16 @@ public class Quiz {
     static int numberOfQuestions;
     static String[] randomStrings;
     static String[] typeMathNumbers = {"Primary", "Odd", "Even"};
+    //what is type of Current Question 
     static int[] typeOfNumberQuestion;
+    //stroe user answers
     static int[] userAnswers;
+    //to check user answers
     static int[] checkUserAnswers;
+    //store correct answers
     static int[] correctِِِِِِِAnswers;
     static int numberOfCharacters;
+    //store how many numbers in random string for each question
     static int counterNumber = 0;
     static byte counterCorrectِِِِِِِAnswers = 0;
     static byte counterWrongAnswers = 0;
@@ -39,7 +44,7 @@ public class Quiz {
         userAnswers = new int[numberOfQuestions];
         correctِِِِِِِAnswers = new int[numberOfQuestions];
         checkUserAnswers = new int[numberOfQuestions];
-        showMargins();           
+        showMargins();
         showQuestionMessage();
         getrasult();
     }
@@ -48,12 +53,14 @@ public class Quiz {
         System.out.println("Please enter the maximum number of questions");
         try {
             int number = reader.nextInt();
+            //less than 1 throw exception
             if (number < 1) {
                 throw new Exception();
             } else {
                 return number;
             }
         } catch (InputMismatchException ex) {
+            //this declare for clean Scanner from the wrongs input to aviod repeat forever
             reader = new Scanner(System.in);
             return showNumberQuestionMessage();
         } catch (Exception ex) {
@@ -75,6 +82,7 @@ public class Quiz {
                 throw new Exception();
             }
         } catch (InputMismatchException ex) {
+            //this declare for clean Scanner from the wrongs input to aviod repeat forever
             reader = new Scanner(System.in);
             return getNumberOfCharacters();
         } catch (Exception ex) {
@@ -83,10 +91,13 @@ public class Quiz {
     }
 
     public static String generateRandomString(int numberOfCurrentQuestion) {
+        //all chars need to use
         String allCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 + "0123456789"
                 + "abcdefghijklmnopqrstuvxyz";
+        //length all char
         int allCharLength = allCharacters.length();
+        //stroe random string
         String RandomString = "";
         for (int i = 1; i <= numberOfCharacters; i++) {
             //get random index from allCharacters
@@ -106,8 +117,8 @@ public class Quiz {
     public static void showQuestionMessage() {
         int i = 0;
         int index = 0;
-        while (i < numberOfQuestions) {  
-                       
+        while (i < numberOfQuestions) {
+            //if there is no element store on else.. an exception happend so don't do that
             if (randomStrings[i] == null && typeOfNumberQuestion[i] == 0) {
                 numberOfCharacters = getNumberOfCharacters();
                 index = new Random().nextInt(3);
@@ -119,8 +130,10 @@ public class Quiz {
 
             try {
                 String userAnswer = reader.next();
-                showMargins();  
+                showMargins();
+                //user ignored 
                 if (userAnswer.equalsIgnoreCase("ignore")) {
+                    //store wrong number
                     userAnswers[i] = 0;
                 } else {
                     userAnswers[i] = Integer.parseInt(userAnswer);
@@ -144,16 +157,19 @@ public class Quiz {
         int number = (c - '0');
         //even type
         switch (typeNumber) {
+            //even choice
             case 2 -> {
                 if (number % 2 == 0) {
                     counterNumber++;
                 }
             }
+            //odd choice
             case 1 -> {
                 if (number % 2 != 0) {
                     counterNumber++;
                 }
             }
+            //primary choice
             default -> {
                 if (isPrimary(number)) {
                     counterNumber++;
@@ -181,6 +197,7 @@ public class Quiz {
     }
 
     public static void checkAnswers(int numberOfCurrentQuestion) {
+        //if answer is right store 1 and plus counter
         if (userAnswers[numberOfCurrentQuestion] == correctِِِِِِِAnswers[numberOfCurrentQuestion]) {
             checkUserAnswers[numberOfCurrentQuestion] = 1;
             counterCorrectِِِِِِِAnswers++;
@@ -193,6 +210,7 @@ public class Quiz {
     public static void getrasult() {
         String input = null;
         boolean flag = true;
+        //repeat for input eqauls exit
         while (flag) {
             try {
                 System.out.println("""
@@ -224,12 +242,15 @@ public class Quiz {
 
     public static void getAnswers(int choice) {
         switch (choice) {
+            //wrong answers choice
             case 1 -> {
                 System.out.println("The number of the wrong answers is : " + getWrongAnswers());
             }
+            //right answers choice
             case 2 -> {
                 System.out.println("The number of the right answers is : " + getCorrectِِِِِِِAnswers());
             }
+            //all answers choice
             case 3 -> {
                 getAllAnswers();
             }
@@ -241,7 +262,7 @@ public class Quiz {
                            Question     Type     User Answer     Correct Answer
                            =========================================================
                            """);
-
+        //print all questions
         for (int i = 0; i < numberOfQuestions; i++) {
             System.out.println(randomStrings[i] + "\t" + typeOfNumberQuestion[i] + "\t\t" + userAnswers[i] + "\t\t" + correctِِِِِِِAnswers[i]);
         }
