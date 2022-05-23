@@ -39,8 +39,7 @@ public class Quiz {
         userAnswers = new int[numberOfQuestions];
         correctِِِِِِِAnswers = new int[numberOfQuestions];
         checkUserAnswers = new int[numberOfQuestions];
-        showMargins();
-        numberOfCharacters = getNumberOfCharacters();
+        showMargins();           
         showQuestionMessage();
         getrasult();
     }
@@ -107,8 +106,10 @@ public class Quiz {
     public static void showQuestionMessage() {
         int i = 0;
         int index = 0;
-        while (i < numberOfQuestions) {
+        while (i < numberOfQuestions) {  
+                       
             if (randomStrings[i] == null && typeOfNumberQuestion[i] == 0) {
+                numberOfCharacters = getNumberOfCharacters();
                 index = new Random().nextInt(3);
                 randomStrings[i] = generateRandomString(i);
                 typeOfNumberQuestion[i] = index;
@@ -118,9 +119,9 @@ public class Quiz {
 
             try {
                 String userAnswer = reader.next();
+                showMargins();  
                 if (userAnswer.equalsIgnoreCase("ignore")) {
                     userAnswers[i] = 0;
-                    System.out.println("Ignored");
                 } else {
                     userAnswers[i] = Integer.parseInt(userAnswer);
                 }
