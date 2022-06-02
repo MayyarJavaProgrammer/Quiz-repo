@@ -135,6 +135,9 @@ public class Quiz {
                 if (userAnswer.equalsIgnoreCase("ignore")) {
                     //store wrong number
                     userAnswers[i] = 0;
+                    checkUserAnswers[i] = 0;
+                    counterWrongAnswers++;
+                    continue;
                 } else {
                     userAnswers[i] = Integer.parseInt(userAnswer);
                 }
